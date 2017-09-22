@@ -21,12 +21,14 @@ $(function(){
 
     img.onload=drawImage;
     move.onclick=animate;
+    back.onclick=moveBack;
 
     function drawImage() {
+      context.clearRect(0,0,canvas.width,canvas.height);
       context.drawImage(img,currentX,currentY,50,50);
     }
 
-    function animate(){
+    function animate() {
         // animation loop
         requestAnimationFrame(animate);
 
@@ -43,6 +45,24 @@ $(function(){
         context.clearRect(0,0,canvas.width,canvas.height);
         context.drawImage(img,x,y,50,50);
     }
+
+    function moveBack() {
+      // animation loop
+      requestAnimationFrame(moveBack);
+
+      // define path image shall move on
+      if (currentX > 50) {
+        currentX -= 10;
+      } else if (currentY > 50) {
+        currentY -= 5;
+      }
+
+      var x=currentX;
+      var y=currentY;
+
+      context.clearRect(0,0,canvas.width,canvas.height);
+      context.drawImage(img,x,y,50,50);
+    }
 });
 </script>
 </head>
@@ -54,6 +74,7 @@ $(function(){
   </div>
 
   <button type="button" id="move">Move!</button>
+  <button type="button" id="back">Move back!</button>
 </body>
 
 </html>
