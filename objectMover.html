@@ -18,11 +18,12 @@ $(function(){
 
     // define image
     var img=document.getElementById('coin');
-    context.drawImage(img,currentX,currentY,50,50);
 
-    move.onclick=start;
-    function start(){
-        animate();
+    img.onload=drawImage;
+    move.onclick=animate;
+
+    function drawImage() {
+      context.drawImage(img,currentX,currentY,50,50);
     }
 
     function animate(){
